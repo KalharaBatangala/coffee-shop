@@ -10,7 +10,7 @@ const Footer: React.FC = () => {
         {/* About */}
         <div>
           <h2 className="text-xl font-bold mb-4 text-orange-600">Royal Coffee</h2>
-          <p className="text-gray-400 font-serif text-sm italic">
+          <p className="text-gray-400 font-serif text-sm italic hover:text-orange-600">
             Premium coffee brewed with love. Visit us in-store or order online to experience the royal taste.
           </p>
         </div>

@@ -23,6 +23,8 @@
 }
 
 body {
+  @apply cursor-custom-arrow;
+  
   margin: 0;
   padding: 0;
   background: var(--background);

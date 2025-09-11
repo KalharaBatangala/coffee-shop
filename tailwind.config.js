@@ -8,6 +8,10 @@ module.exports = {
       fontFamily: {
       royal: ['"Great Vibes"', 'cursive'],
     },
+    cursor:{
+      'custom-arrow': 'url(/assets/cursor.png), default',
+      'custom-pointer': 'url(/assets/left.png), default',
+    },
     },
   },
   plugins: [],
