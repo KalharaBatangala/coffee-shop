@@ -1,7 +1,8 @@
 // src/data/products.ts
+import { v4 as uuid } from 'uuid';
 
 export type Product = {
-  id: number;
+  id: string;
   name: string;
   price: number;
   image: string;
@@ -10,28 +11,28 @@ export type Product = {
 
 export const products: Product[] = [
   {
-    id: 1,
+    id: uuid(),
     name: "Espresso",
     price: 3.5,
     image: "/assets/espresso.jpg",
     description: "Rich and bold espresso shot.",
   },
   {
-    id: 2,
+    id: uuid(),
     name: "Cappuccino",
     price: 4,
     image: "/assets/cappuccino.jpg",
     description: "Creamy cappuccino with milk froth.",
   },
   {
-    id: 3,
+    id: uuid(),
     name: "Latte",
     price: 4.5,
     image: "/assets/latte.jpg",
     description: "Smooth latte with steamed milk.",
   },
   {
-    id: 4,
+    id: uuid(),
     name: "Chocolate Muffin",
     price: 2.5,
     image: "/assets/muffin.jpg",
