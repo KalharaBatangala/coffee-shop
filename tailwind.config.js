@@ -12,6 +12,9 @@ module.exports = {
       'custom-arrow': 'url(/assets/cursor.png), default',
       'custom-pointer': 'url(/assets/left.png), default',
     },
+    colors:{
+      primary: '#D99A16', // yellow
+    },
     },
   },
   plugins: [],

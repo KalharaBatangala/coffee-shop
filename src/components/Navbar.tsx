@@ -7,7 +7,7 @@ const Navbar: React.FC = () => {
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         {/* Logo */}
         <Link href="/">
-          <span className="text-2xl font-bold text-yellow-400 cursor-custom-pointer">
+          <span className="text-2xl font-bold text-primary cursor-custom-pointer">
             CoffeeShop
           </span>
         </Link>
@@ -15,16 +15,16 @@ const Navbar: React.FC = () => {
         {/* Links */}
         <div className="space-x-6 flex items-center">
           <Link href="/">
-            <span className="text-white hover:text-yellow-400 cursor-custom-pointer">Home</span>
+            <span className="text-white hover:text-primary cursor-custom-pointer">Home</span>
           </Link>
           <Link href="/products">
-            <span className="text-white hover:text-yellow-400 cursor-custom-pointer">Products</span>
+            <span className="text-white hover:text-primary cursor-custom-pointer">Products</span>
           </Link>
           <Link href="/cart">
-            <span className="text-white hover:text-yellow-400 cursor-custom-pointer">Cart</span>
+            <span className="text-white hover:text-primary cursor-custom-pointer">Cart</span>
           </Link>
           <Link href="/about">
-            <span className="text-white hover:text-yellow-400 cursor-custom-pointer">About</span>
+            <span className="text-white hover:text-primary cursor-custom-pointer">About</span>
           </Link>
         </div>
       </div>
