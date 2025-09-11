@@ -20,16 +20,16 @@ const Footer: React.FC = () => {
           <h2 className="text-xl font-bold mb-4 text-orange-600">Quick Links</h2>
           <ul className="space-y-2">
             <li>
-              <Link href="/" className="hover:text-orange-600">Home</Link>
+              <Link href="/" className="hover:text-orange-600 hover:cursor-custom-pointer">Home</Link>
             </li>
             <li>
-              <Link href="/products" className="hover:text-orange-600">Products</Link>
+              <Link href="/products" className="hover:text-orange-600 hover:cursor-custom-pointer">Products</Link>
             </li>
             <li>
-              <Link href="/about" className="hover:text-orange-600">About</Link>
+              <Link href="/about" className="hover:text-orange-600 hover:cursor-custom-pointer">About</Link>
             </li>
             <li>
-              <Link href="/cart" className="hover:text-orange-600">Cart</Link>
+              <Link href="/cart" className="hover:text-orange-600 hover:cursor-custom-pointer">Cart</Link>
             </li>
           </ul>
         </div>
@@ -38,13 +38,13 @@ const Footer: React.FC = () => {
         <div>
           <h2 className="text-xl font-bold mb-4 text-orange-600">Follow Us</h2>
           <div className="flex space-x-4">
-            <a href="#" target="_blank" rel="noopener noreferrer" className="hover:text-orange-600">
+            <a href="#" target="_blank" rel="noopener noreferrer" className="hover:text-orange-600 hover:cursor-custom-pointer">
               <FaInstagram size={24} />
             </a>
-            <a href="#" target="_blank" rel="noopener noreferrer" className="hover:text-orange-600">
+            <a href="#" target="_blank" rel="noopener noreferrer" className="hover:text-orange-600 hover:cursor-custom-pointer">
               <FaFacebookF size={24} />
             </a>
-            <a href="#" target="_blank" rel="noopener noreferrer" className="hover:text-orange-600">
+            <a href="#" target="_blank" rel="noopener noreferrer" className="hover:text-orange-600 hover:cursor-custom-pointer">
               <FaTwitter size={24} />
             </a>
           </div>
