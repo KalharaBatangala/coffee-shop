@@ -2,7 +2,8 @@ import { products } from "../data/products";
 import ProductCard from "../components/ProductCard";
 import React from "react";
 import { Great_Vibes } from "next/font/google";
-
+import Image from 'next/image'
+import profile from '../../public/assets/dark-bg.jpg'
 const greatVibes = Great_Vibes({
   weight: "400", // Great Vibes only has one weight
   subsets: ["latin"],
@@ -13,7 +14,7 @@ const HomePage = () => {
   return (
     <div className="relative w-full h-full min-h-screen overflow-hidden">
       {/* Background Video */}
-      <video
+      {/* <video
         className="absolute top-0 left-0 w-full h-full object-cover -z-10"
         autoPlay
         loop
@@ -22,15 +23,24 @@ const HomePage = () => {
       >
         <source src="/assets/coffee-video.mp4" type="video/mp4" />
         Your browser does not support the video tag.
-      </video>
+      </video> */}
 
-      {/* Optional dark overlay for readability */}
-      <div className="absolute top-0 left-0 w-full h-full bg-black/40 -z-10"></div>
+      <Image
+      className="absolute  w-full h-full"
+      src={profile}
+      width={500}
+      height={500}
+      alt="Picture of the author"
+      priority={true}
+    />
+
+
+      
 
       {/* Content */}
-      <div className="relative container mx-auto px-4 py-8 pt-24 -mt-2">
+      <div className="relative container mx-auto px-4 py-8 pt-24 -mt-8">
       <h1
-        className={`${greatVibes.className} text-5xl font-bold italic mb-6 text-center 
+        className={`${greatVibes.className} text-5xl font-bold italic mb-6 pb-6 text-center 
         bg-gradient-to-r from-yellow-300 via-yellow-500 to-yellow-300 bg-clip-text text-transparent 
         drop-shadow-lg leading-[1.4]`}
       >
