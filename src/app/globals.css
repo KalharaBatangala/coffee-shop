@@ -1,33 +1,313 @@
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@import "tailwindcss";
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-ink: #0c0907;
+  --color-ink-2: #14100c;
+  --color-ink-3: #1d1712;
+  --color-gold: #d4af5f;
+  --color-gold-bright: #f1d48a;
+  --color-gold-deep: #9c7a35;
+  --color-ivory: #f3ead8;
+  --color-muted: #a99b86;
+  --color-wax: #8b1e2c;
+  --color-wax-dark: #5e111c;
+  --color-parchment: #efe3c8;
+  --color-line: rgb(212 175 95 / 0.18);
+
+  --font-display: var(--font-cormorant), "Times New Roman", serif;
+  --font-caps: var(--font-cinzel), "Times New Roman", serif;
+  --font-script: var(--font-great-vibes), cursive;
+  --font-sans: var(--font-cormorant), Georgia, serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  color-scheme: dark;
+  /* Gold arrow cursor, a nod to the original custom cursor, now in theme. */
+  --cursor-gold: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M3 2l7.5 19 2.6-7.9L21 10.5z' fill='%23d4af5f' stroke='%230c0907' stroke-width='1.4' stroke-linejoin='round'/%3E%3C/svg%3E")
+      3 2, auto;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  @apply cursor-custom-arrow;
-  
-  margin: 0;
-  padding: 0;
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-ink);
+  color: var(--color-ivory);
+  font-family: var(--font-sans);
+  font-size: 1.125rem;
+  line-height: 1.6;
+  cursor: var(--cursor-gold);
+  -webkit-font-smoothing: antialiased;
+}
+
+a,
+button,
+[role="button"],
+label,
+select,
+summary {
+  cursor: pointer;
+}
+
+::selection {
+  background: var(--color-gold);
+  color: var(--color-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-gold-bright);
+  outline-offset: 3px;
+}
+
+/* ---------- Reusable pieces ---------- */
+
+@utility gold-text {
+  background: linear-gradient(
+    100deg,
+    #9c7a35 0%,
+    #f1d48a 22%,
+    #d4af5f 40%,
+    #fff3c9 50%,
+    #d4af5f 60%,
+    #f1d48a 78%,
+    #9c7a35 100%
+  );
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 7s ease-in-out infinite;
+}
+
+@utility eyebrow {
+  font-family: var(--font-caps);
+  font-size: 0.72rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+}
+
+@utility btn-gold {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.85rem 1.75rem;
+  font-family: var(--font-caps);
+  font-size: 0.78rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-ink);
+  background: linear-gradient(135deg, #f1d48a, #d4af5f 45%, #9c7a35);
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px rgb(241 212 138 / 0.4), 0 10px 30px -10px rgb(212 175 95 / 0.55);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+  &:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.08);
+    box-shadow: 0 0 0 1px rgb(241 212 138 / 0.6), 0 16px 40px -12px rgb(212 175 95 / 0.75);
+  }
+  &:disabled {
+    opacity: 0.5;
+    transform: none;
+    cursor: not-allowed;
+  }
+}
+
+@utility btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.85rem 1.75rem;
+  font-family: var(--font-caps);
+  font-size: 0.78rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-gold-bright);
+  border: 1px solid rgb(212 175 95 / 0.45);
+  border-radius: 2px;
+  transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+  &:hover {
+    background: rgb(212 175 95 / 0.08);
+    border-color: var(--color-gold);
+  }
+}
+
+/* A thin double gold frame, like a gilded picture frame. */
+@utility gilded {
+  position: relative;
+  border: 1px solid var(--color-line);
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 6px;
+    border: 1px solid rgb(212 175 95 / 0.1);
+    pointer-events: none;
+  }
+}
+
+/* Subtle repeating diamond lattice, used behind hero sections. */
+@utility lattice {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'%3E%3Cpath d='M24 2 46 24 24 46 2 24Z' fill='none' stroke='%23d4af5f' stroke-opacity='0.07'/%3E%3Ccircle cx='24' cy='24' r='1.4' fill='%23d4af5f' fill-opacity='0.12'/%3E%3C/svg%3E");
+}
+
+@utility grain {
+  position: relative;
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+}
+
+/* ---------- Motion ---------- */
+
+@keyframes shimmer {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes steam {
+  0% {
+    transform: translateY(8px) scaleX(1);
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.55;
+  }
+  100% {
+    transform: translateY(-36px) scaleX(1.25);
+    opacity: 0;
+  }
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes seal-stamp {
+  0% {
+    transform: scale(2.4) rotate(-35deg);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(0.92) rotate(-8deg);
+    opacity: 1;
+  }
+  80% {
+    transform: scale(1.04) rotate(-12deg);
+  }
+  100% {
+    transform: scale(1) rotate(-10deg);
+    opacity: 1;
+  }
+}
+
+@keyframes unfurl {
+  from {
+    clip-path: inset(0 0 100% 0);
+    opacity: 0.4;
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bump {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.35);
+  }
+}
+
+.steam-wisp {
+  animation: steam 3.6s ease-out infinite;
+  transform-box: fill-box;
+  transform-origin: center bottom;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.animate-fade-up {
+  animation: fade-up 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---------- Print: only the royal decree ---------- */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #royal-decree,
+  #royal-decree * {
+    visibility: visible;
+  }
+  #royal-decree {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    box-shadow: none !important;
+  }
+  .no-print {
+    display: none !important;
+  }
 }

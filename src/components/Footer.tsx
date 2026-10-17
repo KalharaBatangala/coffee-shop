@@ -1,62 +1,92 @@
-import React from "react";
 import Link from "next/link";
-import { FaInstagram, FaFacebookF, FaTwitter } from "react-icons/fa";
+import { FaGithub, FaLinkedinIn } from "react-icons/fa";
+import { Crown } from "./Ornament";
+import OpenStatus from "./OpenStatus";
 
-
-const Footer: React.FC = () => {
+export default function Footer() {
   return (
-    <footer className="bg-gray-900 text-gray-200 py-12 mt-12">
-      <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
-        {/* About */}
-        <div>
-          <h2 className="text-xl font-bold mb-4 text-orange-600">Royal Coffee</h2>
-          <p className="text-gray-400 font-serif text-sm italic hover:text-orange-600">
-            Premium coffee brewed with love. Visit us in-store or order online to experience the royal taste.
+    <footer className="relative border-t border-line bg-ink-2">
+      <div className="mx-auto grid max-w-7xl gap-12 px-4 py-16 sm:px-6 md:grid-cols-12 lg:px-8">
+        <div className="md:col-span-5">
+          <Link href="/" className="flex items-center gap-3">
+            <Crown className="h-6 w-8 text-gold" />
+            <span className="font-caps text-lg tracking-[0.25em]">
+              ROYAL<span className="text-gold"> COFFEE</span>
+            </span>
+          </Link>
+          <p className="mt-5 max-w-sm text-muted italic">
+            Reviving the forgotten coffee crown of Ceylon, one carefully pulled cup at a time.
           </p>
-        </div>
-
-        {/* Quick Links */}
-        <div>
-          <h2 className="text-xl font-bold mb-4 text-orange-600">Quick Links</h2>
-          <ul className="space-y-2">
-            <li>
-              <Link href="/" className="hover:text-orange-600 hover:cursor-custom-pointer">Home</Link>
-            </li>
-            <li>
-              <Link href="/products" className="hover:text-orange-600 hover:cursor-custom-pointer">Products</Link>
-            </li>
-            <li>
-              <Link href="/about" className="hover:text-orange-600 hover:cursor-custom-pointer">About</Link>
-            </li>
-            <li>
-              <Link href="/cart" className="hover:text-orange-600 hover:cursor-custom-pointer">Cart</Link>
-            </li>
-          </ul>
-        </div>
-
-        {/* Socials */}
-        <div>
-          <h2 className="text-xl font-bold mb-4 text-orange-600">Follow Us</h2>
-          <div className="flex space-x-4">
-            <a href="#" target="_blank" rel="noopener noreferrer" className="hover:text-orange-600 hover:cursor-custom-pointer">
-              <FaInstagram size={24} />
-            </a>
-            <a href="#" target="_blank" rel="noopener noreferrer" className="hover:text-orange-600 hover:cursor-custom-pointer">
-              <FaFacebookF size={24} />
-            </a>
-            <a href="#" target="_blank" rel="noopener noreferrer" className="hover:text-orange-600 hover:cursor-custom-pointer">
-              <FaTwitter size={24} />
-            </a>
+          <div className="mt-6">
+            <OpenStatus />
           </div>
         </div>
 
+        <div className="md:col-span-3">
+          <h3 className="eyebrow">Explore</h3>
+          <ul className="mt-5 space-y-2.5">
+            {[
+              ["/menu", "The Royal Menu"],
+              ["/atelier", "The Atelier"],
+              ["/heritage", "Our Heritage"],
+              ["/cart", "Your Order"],
+            ].map(([href, label]) => (
+              <li key={href}>
+                <Link href={href} className="text-ivory/80 transition-colors hover:text-gold-bright">
+                  {label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="md:col-span-4">
+          <h3 className="eyebrow">Court Hours</h3>
+          <dl className="mt-5 space-y-2.5 text-ivory/80">
+            <div className="flex justify-between gap-6 border-b border-line pb-2.5">
+              <dt>Monday – Friday</dt>
+              <dd className="text-gold-bright">7:00 – 22:00</dd>
+            </div>
+            <div className="flex justify-between gap-6 border-b border-line pb-2.5">
+              <dt>Saturday – Sunday</dt>
+              <dd className="text-gold-bright">8:00 – 23:00</dd>
+            </div>
+            <div className="flex justify-between gap-6">
+              <dt>Location</dt>
+              <dd>Kandy, Sri Lanka</dd>
+            </div>
+          </dl>
+        </div>
       </div>
 
-      <div className="mt-8 border-t border-gray-700 pt-4 text-center text-gray-500 text-sm">
-        &copy; {new Date().getFullYear()} Royal Coffee. All rights reserved.
+      <div className="border-t border-line">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-4 py-6 text-sm text-muted sm:px-6 md:flex-row lg:px-8">
+          <p>
+            &copy; {new Date().getFullYear()} Royal Coffee · A portfolio concept by{" "}
+            <span className="text-ivory">Kalhara Batangala</span>. Not a real shop.
+          </p>
+          <div className="flex items-center gap-4">
+            <a
+              href="https://github.com/KalharaBatangala"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+              className="transition-colors hover:text-gold-bright"
+            >
+              <FaGithub className="h-5 w-5" />
+            </a>
+            <a
+              href="https://lk.linkedin.com/in/kalhara-batangala-2bb635213"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              className="transition-colors hover:text-gold-bright"
+            >
+              <FaLinkedinIn className="h-5 w-5" />
+            </a>
+          </div>
+        </div>
       </div>
     </footer>
   );
-};
-
-export default Footer;
+}
